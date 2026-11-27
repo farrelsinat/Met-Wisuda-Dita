@@ -11,8 +11,9 @@ JUDUL_SURAT = f"Met wisuda, {NAMA_PACAR}! 🎓"
 
 PARAGRAF_SURAT = [
     "Congraduation lah ya kalo kata orang-orang. Setelah menempuh huru-hara, suka, duka, duka, dan duka (hehe..), akhirnya dia LULUS GUYS!",
-    "Terima kasih sudah bertahan dan berjuang menempuh pendidikan di dalam tirani REZIM WOWOK. Ya.. setidaknya proses selama 7 tahun itu membuahkan IJAZAH ASLI!",
-    "Semoga bisa cepat mendapatkan 1 dari 19jt lapangan pekerjaan yang dijanjikan. Semoga selalu dijauhkan dari WAPRES (Waduh & Depressed). Selamat menempuh hidup BADDIE!",
+    "Terima kasih sudah bertahan dan berjuang menempuh pendidikan di dalam tirani REZIM WOWOK. Ya.. setidaknya proses selama 7 tahun itu menjadi IJAZAH ASLI!",
+    "Semoga bisa cepat mendapatkan 1 dari 19JT LAPANGAN PEKERJAAN yang dijanjikan. Semoga selalu dijauhkan dari WAPRES (Waduh & Depressed).",
+    "Selamat menempuh hidup BADDIE!",
 ]
 
 PENUTUP_SURAT = "Sending lots of cheers & info loker!"
@@ -288,7 +289,7 @@ else:
                 <strong>{NAMA_PENGIRIM}</strong>
             </div>
             <div class="replay-wrap">
-                <a class="replay-link" href="?buka=0" target="_self">Putar ulang dari amplop</a>
+                <a class="replay-link" href="?buka=0" target="_self">Close</a>
             </div>
         </div>
         """,
