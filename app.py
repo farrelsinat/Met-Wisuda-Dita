@@ -104,7 +104,7 @@ css_lines = [
     "  transition: transform 0.25s ease, box-shadow 0.25s ease;",
     "}",
     ".envelope-link:hover .envelope {",
-    "  transform: translateY(-5px) rotate(-1deg);",
+    "  transform: translateY(-15px) rotate(-10deg);",
     "  box-shadow: 0 16px 32px rgba(145, 114, 38, 0.22);",
     "}",
     ".envelope-sparkle-tl {",
