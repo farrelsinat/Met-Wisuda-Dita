@@ -73,7 +73,7 @@ delay_surat = round(delay_awal_foto + (jumlah_foto * JEDA_ANTAR_FOTO) + 0.15, 2)
 
 css_lines = [
     "<style>",
-    "@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Fredoka:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');",
+    "@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');",
     ".stApp {",
     "  background-color: #FFFDF0;",
     "  background-image: radial-gradient(#FDE047 1.35px, transparent 1.35px), radial-gradient(#FACC15 1.1px, #FFFDF0 1.1px);",
@@ -170,12 +170,7 @@ css_lines = [
     "  border-right: 141px solid transparent;",
     "  border-top: 98px solid #FDE047;",
     "  transform-origin: top;",
-    "  transition: transform 0.6s ease;",
     "  z-index: 3;",
-    "}",
-    ".envelope.open .envelope-flap {",
-    "  transform: rotateX(180deg);",
-    "  z-index: 1;",
     "}",
     ".envelope-card-preview {",
     "  position: absolute;",
@@ -194,10 +189,6 @@ css_lines = [
     "  font-size: 0.96rem;",
     "  color: #6B440A;",
     "  z-index: 2;",
-    "  transition: transform 0.5s ease;",
-    "}",
-    ".envelope.open .envelope-card-preview {",
-    "  transform: translateY(-28px);",
     "}",
     ".envelope-pocket {",
     "  position: absolute;",
@@ -229,10 +220,6 @@ css_lines = [
     "  color: #713F12;",
     "  z-index: 5;",
     "  box-shadow: 0 4px 10px rgba(202, 138, 4, 0.22);",
-    "  transition: opacity 0.3s ease;",
-    "}",
-    ".envelope.open .envelope-seal {",
-    "  opacity: 0;",
     "}",
     ".envelope-hint {",
     "  text-align: center;",
@@ -246,62 +233,48 @@ css_lines = [
     "  border: 2px solid #FDE047;",
     "  border-radius: 24px;",
     "  padding: 1.8rem 1.4rem;",
-    "  margin-top: 1.2rem;",
+    "  margin-top: 0.4rem;",
     "  box-shadow: 0 14px 32px rgba(202, 138, 4, 0.14), inset 0 2px 0 rgba(255, 255, 255, 0.9);",
-    "  animation: shellAppear 0.35s ease both;",
+    "  animation: shellAppear 0.3s ease both;",
     "}",
-    ".polaroid-stack {",
+    ".photo-pop-list {",
     "  display: flex;",
     "  flex-direction: column;",
     "  align-items: center;",
-    "  margin: 0.4rem auto 2rem auto;",
-    "  padding: 0.4rem 0;",
+    "  gap: 1.2rem;",
+    "  margin: 0.2rem auto 1.8rem auto;",
     "}",
-    ".polaroid-card {",
+    ".photo-pop-card {",
     "  width: 100%;",
-    "  max-width: 288px;",
+    "  max-width: 310px;",
     "  background: #FFFDF9;",
-    "  padding: 11px 11px 16px 11px;",
-    "  border-radius: 12px;",
-    "  border: 1.5px solid #FDE047;",
-    "  box-shadow: 0 10px 22px rgba(202, 138, 4, 0.16), 0 3px 0 #FEF08A;",
-    "  margin-bottom: -10px;",
+    "  padding: 10px;",
+    "  border-radius: 18px;",
+    "  border: 2px solid #FDE047;",
+    "  box-shadow: 0 10px 22px rgba(202, 138, 4, 0.16), 0 4px 0 #FEF08A;",
     "  opacity: 0;",
-    "  transform: rotate(var(--tilt-angle, 0deg));",
-    "  transition: transform 0.3s ease, box-shadow 0.3s ease;",
-    "  animation: polaroidSlideOut 0.75s cubic-bezier(0.22, 1, 0.36, 1) var(--photo-delay, 0.2s) forwards;",
-    "  position: relative;",
-    "  z-index: var(--card-z, 1);",
+    "  animation: photoPopIn 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) var(--photo-delay, 0.2s) forwards;",
     "}",
-    ".polaroid-card:last-child {",
-    "  margin-bottom: 0;",
-    "}",
-    ".polaroid-card:hover {",
-    "  transform: rotate(0deg) scale(1.03) !important;",
-    "  box-shadow: 0 16px 30px rgba(202, 138, 4, 0.24);",
-    "  z-index: 20;",
-    "}",
-    ".polaroid-photo-box {",
+    ".photo-pop-media {",
     "  background: #FEF9C3;",
-    "  border-radius: 8px;",
+    "  border-radius: 12px;",
     "  overflow: hidden;",
     "  border: 1px solid #FDE047;",
     "}",
-    ".polaroid-photo-box img {",
+    ".photo-pop-media img {",
     "  width: 100%;",
     "  height: auto;",
     "  display: block;",
     "}",
-    ".polaroid-caption {",
+    ".photo-pop-caption {",
     "  margin-top: 0.65rem;",
     "  text-align: center;",
-    "  font-family: 'Caveat', cursive, sans-serif;",
-    "  font-size: 1.28rem;",
-    "  font-weight: 700;",
-    "  line-height: 1.25;",
-    "  color: #5A3B0C;",
+    "  font-family: 'Fredoka', sans-serif;",
+    "  font-size: 0.95rem;",
+    "  font-weight: 500;",
+    "  color: #6B440A;",
     "}",
-    ".polaroid-placeholder {",
+    ".photo-pop-placeholder {",
     "  padding: 1.4rem 0.8rem;",
     "  text-align: center;",
     "  font-size: 0.85rem;",
@@ -333,14 +306,30 @@ css_lines = [
     "  font-size: 0.96rem;",
     "  color: #7A581B;",
     "}",
+    ".replay-wrap {",
+    "  margin-top: 1.4rem;",
+    "  text-align: center;",
+    "}",
+    ".replay-link {",
+    "  display: inline-block;",
+    "  text-decoration: none !important;",
+    "  background: #FEF08A;",
+    "  color: #5A3B0C !important;",
+    "  border: 1.5px solid #FACC15;",
+    "  border-radius: 999px;",
+    "  padding: 0.45rem 1.1rem;",
+    "  font-family: 'Fredoka', sans-serif;",
+    "  font-size: 0.85rem;",
+    "  box-shadow: 0 3px 0 #FDE047;",
+    "}",
     "@keyframes shellAppear {",
     "  from { opacity: 0; transform: translateY(10px); }",
     "  to { opacity: 1; transform: translateY(0); }",
     "}",
-    "@keyframes polaroidSlideOut {",
-    "  0% { opacity: 0; transform: translateY(55px) scale(0.9) rotate(0deg); }",
-    "  65% { opacity: 1; transform: translateY(-8px) scale(1.01) rotate(calc(var(--tilt-angle, 0deg) * 1.15)); }",
-    "  100% { opacity: 1; transform: translateY(0) scale(1) rotate(var(--tilt-angle, 0deg)); }",
+    "@keyframes photoPopIn {",
+    "  0% { opacity: 0; transform: scale(0.55) translateY(18px); }",
+    "  70% { opacity: 1; transform: scale(1.06) translateY(-3px); }",
+    "  100% { opacity: 1; transform: scale(1) translateY(0); }",
     "}",
     "@keyframes letterSlideUp {",
     "  from { opacity: 0; transform: translateY(18px); }",
@@ -362,61 +351,51 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-status_amplop = "open" if st.session_state.amplop_terbuka else ""
-target_param = "?buka=0" if st.session_state.amplop_terbuka else "?buka=1"
-teks_petunjuk = (
-    "Tap amplop lagi buat nutup surat"
-    if st.session_state.amplop_terbuka
-    else "Tap amplop buat buka surat"
-)
-
-st.markdown(
-    f"""
-    <a class="envelope-link" href="{target_param}" target="_self">
-        <div class="envelope {status_amplop}">
-            <div class="envelope-sparkle-tl">*</div>
-            <div class="envelope-sparkle-tr">+</div>
-            <div class="envelope-flap"></div>
-            <div class="envelope-card-preview">For {NAMA_PACAR} 🎓</div>
-            <div class="envelope-pocket"></div>
-            <div class="envelope-seal">*</div>
-        </div>
-    </a>
-    <div class="envelope-hint">{teks_petunjuk}</div>
-    """,
-    unsafe_allow_html=True,
-)
-
-if st.session_state.amplop_terbuka:
-    sudut_miring = [-3.5, 3.0, -2.5, 3.6, -2.8]
+if not st.session_state.amplop_terbuka:
+    st.markdown(
+        f"""
+        <a class="envelope-link" href="?buka=1" target="_self">
+            <div class="envelope">
+                <div class="envelope-sparkle-tl">*</div>
+                <div class="envelope-sparkle-tr">+</div>
+                <div class="envelope-flap"></div>
+                <div class="envelope-card-preview">For {NAMA_PACAR} 🎓</div>
+                <div class="envelope-pocket"></div>
+                <div class="envelope-seal">*</div>
+            </div>
+        </a>
+        <div class="envelope-hint">Tap amplop buat buka surat</div>
+        """,
+        unsafe_allow_html=True,
+    )
+else:
     foto_items_html = []
 
     for idx, (path_foto, caption_foto) in enumerate(DAFTAR_FOTO):
         delay_foto = round(delay_awal_foto + (idx * JEDA_ANTAR_FOTO), 2)
-        tilt = sudut_miring[idx % len(sudut_miring)]
         foto_uri = encode_foto_base64(path_foto)
 
         if foto_uri:
             isi_media = f'<img src="{foto_uri}" alt="{caption_foto}" />'
         else:
             isi_media = (
-                f'<div class="polaroid-placeholder">'
+                f'<div class="photo-pop-placeholder">'
                 f"Letakkan file <strong>{path_foto}</strong> di folder yang sama dengan <code>app.py</code>"
                 f"</div>"
             )
 
         foto_items_html.append(
             f"""
-            <div class="polaroid-card" style="--photo-delay: {delay_foto}s; --tilt-angle: {tilt}deg; --card-z: {idx + 1};">
-                <div class="polaroid-photo-box">
+            <div class="photo-pop-card" style="--photo-delay: {delay_foto}s;">
+                <div class="photo-pop-media">
                     {isi_media}
                 </div>
-                <div class="polaroid-caption">{caption_foto}</div>
+                <div class="photo-pop-caption">{caption_foto}</div>
             </div>
             """
         )
 
-    polaroid_stack_html = "\n".join(foto_items_html)
+    foto_list_html = "\n".join(foto_items_html)
     paragraf_html = "\n".join(
         f'<p class="letter-body">{paragraf}</p>' for paragraf in PARAGRAF_SURAT
     )
@@ -424,8 +403,8 @@ if st.session_state.amplop_terbuka:
     st.markdown(
         f"""
         <div class="letter-container">
-            <div class="polaroid-stack">
-                {polaroid_stack_html}
+            <div class="photo-pop-list">
+                {foto_list_html}
             </div>
             <div class="letter-stage">
                 <div class="letter-title">{JUDUL_SURAT}</div>
@@ -433,6 +412,9 @@ if st.session_state.amplop_terbuka:
                 <div class="letter-footer">
                     <div>{PENUTUP_SURAT}</div>
                     <strong>{NAMA_PENGIRIM}</strong>
+                </div>
+                <div class="replay-wrap">
+                    <a class="replay-link" href="?buka=0" target="_self">Putar ulang dari amplop</a>
                 </div>
             </div>
         </div>
