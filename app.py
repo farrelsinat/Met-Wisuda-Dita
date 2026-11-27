@@ -13,10 +13,10 @@ st.set_page_config(
 NAMA_PACAR = "Dita"  # Ganti dengan nama panggilan
 JUDUL_SURAT = f"Selamat Wisuda, {NAMA_PACAR} 🎓"
 
-# Daftar foto yang akan keluar bergantian (path_file, caption_polaroid)
+# Daftar foto yang akan keluar bergantian (path_file, caption)
 DAFTAR_FOTO = [
     ("foto_1.jpg", "Momen persiapan sebelum hari wisuda"),
-    ("foto_2.jpg", "Proses panjang penuh cerita & perjuangan"),
+    ("foto_2.jpg", "Proses panjang penuh cerita dan perjuangan"),
     ("foto_3.jpg", "Akhirnya resmi menyandang gelar baru!"),
 ]
 
@@ -77,12 +77,10 @@ jumlah_foto = max(len(DAFTAR_FOTO), 1)
 delay_awal_foto = 0.20
 delay_surat = round(delay_awal_foto + (jumlah_foto * JEDA_ANTAR_FOTO) + 0.15, 2)
 
-# 4. CSS Kustom: Palet Kuning Soft, Amplop Klik Langsung & Kartu Polaroid
+# 4. CSS Kustom: Palet Kuning Soft, Amplop Klik Langsung & Foto Bergantian
 st.markdown(
     f"""
     <style>
-    @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap');
-
     /* Latar belakang utama: Soft Cream & Butter Yellow */
     .stApp {{
         background: linear-gradient(180deg, #FFFDF5 0%, #FFF8DC 100%);
@@ -231,71 +229,47 @@ st.markdown(
         background-color: #FFFDF7;
         border: 1.5px solid #FDE68A;
         border-radius: 16px;
-        padding: 1.8rem 1.4rem;
+        padding: 1.8rem 1.6rem;
         margin-top: 1.2rem;
         box-shadow: 0 12px 30px rgba(180, 145, 50, 0.10);
         animation: shellAppear 0.35s ease both;
     }}
 
-    /* Kumpulan kartu Polaroid bertumpuk ringan */
-    .polaroid-stack {{
+    /* Kumpulan foto yang keluar bergantian */
+    .photo-gallery-sequence {{
         display: flex;
         flex-direction: column;
-        align-items: center;
-        margin: 0.4rem auto 2rem auto;
-        padding: 0.4rem 0;
+        gap: 1.15rem;
+        margin: 0.4rem auto 1.6rem auto;
+        max-width: 340px;
     }}
-    .polaroid-card {{
-        width: 100%;
-        max-width: 285px;
-        background: #FFFDF9;
-        padding: 11px 11px 16px 11px;
-        border-radius: 4px;
-        border: 1px solid #F3E5AB;
-        box-shadow: 0 10px 24px rgba(145, 114, 38, 0.18), 0 2px 6px rgba(0, 0, 0, 0.05);
-        margin-bottom: -10px;
+    .photo-stage {{
+        text-align: center;
         opacity: 0;
-        transform: rotate(var(--tilt-angle, 0deg));
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        animation: polaroidSlideOut 0.75s cubic-bezier(0.22, 1, 0.36, 1) var(--photo-delay, 0.2s) forwards;
-        position: relative;
-        z-index: var(--card-z, 1);
+        animation: photoSlideOut 0.7s cubic-bezier(0.22, 1, 0.36, 1) var(--photo-delay, 0.2s) forwards;
     }}
-    .polaroid-card:last-child {{
-        margin-bottom: 0;
-    }}
-    .polaroid-card:hover {{
-        transform: rotate(0deg) scale(1.03) !important;
-        box-shadow: 0 16px 32px rgba(145, 114, 38, 0.24);
-        z-index: 20;
-    }}
-    .polaroid-photo-box {{
-        background: #FEF9E7;
-        border-radius: 2px;
+    .photo-frame {{
+        background: #FFFBEB;
+        padding: 10px 10px 12px 10px;
+        border-radius: 14px;
+        border: 1.5px solid #FDE68A;
+        box-shadow: 0 10px 22px rgba(180, 145, 50, 0.14);
         overflow: hidden;
-        border: 1px solid #F8ECC2;
     }}
-    .polaroid-photo-box img {{
+    .photo-frame img {{
         width: 100%;
         height: auto;
+        border-radius: 10px;
         display: block;
     }}
-    .polaroid-caption {{
-        margin-top: 0.7rem;
-        text-align: center;
-        font-family: 'Caveat', cursive, sans-serif;
-        font-size: 1.25rem;
-        line-height: 1.3;
-        color: #5C481C;
-    }}
-    .polaroid-placeholder {{
-        padding: 1.4rem 0.8rem;
-        text-align: center;
-        font-size: 0.85rem;
+    .photo-caption {{
+        margin-top: 0.55rem;
+        font-size: 0.88rem;
         color: #7A632B;
+        font-style: italic;
     }}
 
-    /* Tahap Surat: Muncul setelah seluruh Polaroid keluar */
+    /* Tahap Surat: Muncul setelah seluruh foto keluar */
     .letter-stage {{
         opacity: 0;
         animation: letterSlideUp 0.75s ease {delay_surat}s forwards;
@@ -333,18 +307,18 @@ st.markdown(
         }}
     }}
 
-    @keyframes polaroidSlideOut {{
+    @keyframes photoSlideOut {{
         0% {{
             opacity: 0;
-            transform: translateY(55px) scale(0.9) rotate(0deg);
+            transform: translateY(50px) scale(0.92);
         }}
         65% {{
             opacity: 1;
-            transform: translateY(-8px) scale(1.01) rotate(calc(var(--tilt-angle, 0deg) * 1.15));
+            transform: translateY(-8px) scale(1.01);
         }}
         100% {{
             opacity: 1;
-            transform: translateY(0) scale(1) rotate(var(--tilt-angle, 0deg));
+            transform: translateY(0) scale(1);
         }}
     }}
 
@@ -398,37 +372,35 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# 7. Isi Amplop: Kartu Polaroid Keluar Bergantian Dulu, Lalu Surat Menyusul
+# 7. Isi Amplop: Foto Keluar Bergantian Dulu, Lalu Surat Menyusul
 if st.session_state.amplop_terbuka:
-    sudut_miring = [-3.2, 2.8, -2.2, 3.4, -2.6]
     foto_items_html = []
-
     for idx, (path_foto, caption_foto) in enumerate(DAFTAR_FOTO):
         delay_foto = round(delay_awal_foto + (idx * JEDA_ANTAR_FOTO), 2)
-        tilt = sudut_miring[idx % len(sudut_miring)]
         foto_uri = encode_foto_base64(path_foto)
 
         if foto_uri:
-            isi_media = f'<img src="{foto_uri}" alt="{caption_foto}" />'
+            konten_foto = f"""
+            <div class="photo-frame">
+                <img src="{foto_uri}" alt="{caption_foto}" />
+            </div>
+            <div class="photo-caption">{caption_foto}</div>
+            """
         else:
-            isi_media = (
-                f'<div class="polaroid-placeholder">'
-                f"Letakkan file <strong>{path_foto}</strong> di folder yang sama dengan <code>app.py</code>"
-                f"</div>"
-            )
+            konten_foto = f"""
+            <div class="photo-frame">
+                <div class="photo-caption">
+                    Letakkan file foto <strong>{path_foto}</strong> di folder yang sama dengan <code>app.py</code>.
+                </div>
+            </div>
+            <div class="photo-caption">{caption_foto}</div>
+            """
 
         foto_items_html.append(
-            f"""
-            <div class="polaroid-card" style="--photo-delay: {delay_foto}s; --tilt-angle: {tilt}deg; --card-z: {idx + 1};">
-                <div class="polaroid-photo-box">
-                    {isi_media}
-                </div>
-                <div class="polaroid-caption">{caption_foto}</div>
-            </div>
-            """
+            f'<div class="photo-stage" style="--photo-delay: {delay_foto}s;">{konten_foto}</div>'
         )
 
-    polaroid_stack_html = "\n".join(foto_items_html)
+    foto_sequence_html = "\n".join(foto_items_html)
     paragraf_html = "\n".join(
         f'<p class="letter-body">{paragraf}</p>' for paragraf in PARAGRAF_SURAT
     )
@@ -436,8 +408,8 @@ if st.session_state.amplop_terbuka:
     st.markdown(
         f"""
         <div class="letter-container">
-            <div class="polaroid-stack">
-                {polaroid_stack_html}
+            <div class="photo-gallery-sequence">
+                {foto_sequence_html}
             </div>
             <div class="letter-stage">
                 <div class="letter-title">{JUDUL_SURAT}</div>
