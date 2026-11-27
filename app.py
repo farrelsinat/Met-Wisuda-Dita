@@ -42,7 +42,7 @@ css_lines = [
     "<style>",
     "@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');",
     ".stApp {",
-    "  background: linear-gradient(125deg, #FFFDF0, #FEF9C3, #FEF08A, #FFF8DB);",
+    "  background: linear-gradient(125deg, #F4EB6C, #8ACFF8, #FFD444, #006199);",
     "  background-size: 320% 320%;",
     "  animation: softYellowGradient 14s ease infinite;",
     "  color: #543B14;",
