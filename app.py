@@ -1,9 +1,7 @@
-import base64
-from pathlib import Path
 import streamlit as st
 
 st.set_page_config(
-    page_title="Selamat Wisuda! Y2K Edition",
+    page_title="Selamat Wisuda!",
     page_icon="🎓",
     layout="centered",
 )
@@ -11,42 +9,14 @@ st.set_page_config(
 NAMA_PACAR = "Dita"
 JUDUL_SURAT = f"Happy Graduation, {NAMA_PACAR}! 🎓"
 
-DAFTAR_FOTO = [
-    ("foto_1.jpg", "pre-grad glow up & good vibes"),
-    ("foto_2.jpg", "late nights, big dreams & lots of laughs"),
-    ("foto_3.jpg", "officially graduated! so proud of you"),
-]
-
-JEDA_ANTAR_FOTO = 0.85
-
 PARAGRAF_SURAT = [
-    "Selamat atas kelulusanmu hari ini! Rasanya baru kemarin melihatmu sibuk menyusun jadwal, begadang menyelesaikan revisi, dan melewati hari-hari yang melelahkan demi sampai di titik ini.",
-    "Terima kasih sudah bertahan dan berjuang sejauh ini. Setiap proses yang kamu lewati bukan hal yang mudah, dan aku bangga banget melihat semua usaha kerasmu akhirnya terbayar.",
-    "Semoga gelar baru ini menjadi awal dari banyak langkah baik, peluang seru, dan hari-hari yang makin bersinar ke depannya. Selamat merayakan pencapaianmu!",
+    "Congraduation lah ya kalo kata orang-orang. Setelah menempuh huru-hara, suka, duka, duka, dan duka (hehe..), akhirnya dia LULUS GUYS!",
+    "Terima kasih sudah bertahan dan berjuang menempuh pendidikan di dalam tirani REZIM WOWOK. Ya.. setidaknya proses selama 7 tahun itu membuahkan IJAZAH ASLI!",
+    "Semoga bisa cepat mendapatkan 1 dari 19jt lapangan pekerjaan yang dijanjikan. Semoga selalu dijauhkan dari WAPRES (Waduh & Depressed). Selamat menempuh hidup BADDIE!",
 ]
 
-PENUTUP_SURAT = "Sending lots of cheers & proud energy"
-NAMA_PENGIRIM = "From your #1 supporter"
-
-
-def encode_foto_base64(path_str: str) -> str | None:
-    """Membaca file foto lokal dan mengubahnya menjadi data URI."""
-    file_path = Path(path_str)
-    if not file_path.exists():
-        return None
-
-    ext = file_path.suffix.lower().lstrip(".")
-    mime_map = {
-        "jpg": "image/jpeg",
-        "jpeg": "image/jpeg",
-        "png": "image/png",
-        "webp": "image/webp",
-        "gif": "image/gif",
-    }
-    mime_type = mime_map.get(ext, "image/jpeg")
-    encoded = base64.b64encode(file_path.read_bytes()).decode("utf-8")
-    return f"data:{mime_type};base64,{encoded}"
-
+PENUTUP_SURAT = "Sending lots of cheers & info loker!"
+NAMA_PENGIRIM = "From Your Beloved Adek & Nam Joo-hyuk"
 
 if "amplop_terbuka" not in st.session_state:
     st.session_state.amplop_terbuka = False
@@ -66,10 +36,6 @@ elif aksi == "0":
 if st.session_state.get("trigger_balloons"):
     st.balloons()
     st.session_state.trigger_balloons = False
-
-jumlah_foto = max(len(DAFTAR_FOTO), 1)
-delay_awal_foto = 0.20
-delay_surat = round(delay_awal_foto + (jumlah_foto * JEDA_ANTAR_FOTO) + 0.15, 2)
 
 css_lines = [
     "<style>",
@@ -116,10 +82,6 @@ css_lines = [
     "  color: #5A3B0C;",
     "  margin-bottom: 0.25rem;",
     "  line-height: 1.2;",
-    "}",
-    ".header-sub {",
-    "  font-size: 0.93rem;",
-    "  color: #8A6522;",
     "}",
     ".envelope-link {",
     "  text-decoration: none !important;",
@@ -235,54 +197,7 @@ css_lines = [
     "  padding: 1.8rem 1.4rem;",
     "  margin-top: 0.4rem;",
     "  box-shadow: 0 14px 32px rgba(202, 138, 4, 0.14), inset 0 2px 0 rgba(255, 255, 255, 0.9);",
-    "  animation: shellAppear 0.3s ease both;",
-    "}",
-    ".photo-pop-list {",
-    "  display: flex;",
-    "  flex-direction: column;",
-    "  align-items: center;",
-    "  gap: 1.2rem;",
-    "  margin: 0.2rem auto 1.8rem auto;",
-    "}",
-    ".photo-pop-card {",
-    "  width: 100%;",
-    "  max-width: 310px;",
-    "  background: #FFFDF9;",
-    "  padding: 10px;",
-    "  border-radius: 18px;",
-    "  border: 2px solid #FDE047;",
-    "  box-shadow: 0 10px 22px rgba(202, 138, 4, 0.16), 0 4px 0 #FEF08A;",
-    "  opacity: 0;",
-    "  animation: photoPopIn 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) var(--photo-delay, 0.2s) forwards;",
-    "}",
-    ".photo-pop-media {",
-    "  background: #FEF9C3;",
-    "  border-radius: 12px;",
-    "  overflow: hidden;",
-    "  border: 1px solid #FDE047;",
-    "}",
-    ".photo-pop-media img {",
-    "  width: 100%;",
-    "  height: auto;",
-    "  display: block;",
-    "}",
-    ".photo-pop-caption {",
-    "  margin-top: 0.65rem;",
-    "  text-align: center;",
-    "  font-family: 'Fredoka', sans-serif;",
-    "  font-size: 0.95rem;",
-    "  font-weight: 500;",
-    "  color: #6B440A;",
-    "}",
-    ".photo-pop-placeholder {",
-    "  padding: 1.4rem 0.8rem;",
-    "  text-align: center;",
-    "  font-size: 0.85rem;",
-    "  color: #7A581B;",
-    "}",
-    ".letter-stage {",
-    "  opacity: 0;",
-    f"  animation: letterSlideUp 0.75s ease {delay_surat}s forwards;",
+    "  animation: letterSlideUp 0.55s ease 0.15s both;",
     "}",
     ".letter-title {",
     "  font-family: 'Fredoka', sans-serif;",
@@ -322,15 +237,6 @@ css_lines = [
     "  font-size: 0.85rem;",
     "  box-shadow: 0 3px 0 #FDE047;",
     "}",
-    "@keyframes shellAppear {",
-    "  from { opacity: 0; transform: translateY(10px); }",
-    "  to { opacity: 1; transform: translateY(0); }",
-    "}",
-    "@keyframes photoPopIn {",
-    "  0% { opacity: 0; transform: scale(0.55) translateY(18px); }",
-    "  70% { opacity: 1; transform: scale(1.06) translateY(-3px); }",
-    "  100% { opacity: 1; transform: scale(1) translateY(0); }",
-    "}",
     "@keyframes letterSlideUp {",
     "  from { opacity: 0; transform: translateY(18px); }",
     "  to { opacity: 1; transform: translateY(0); }",
@@ -343,9 +249,8 @@ st.markdown("\n".join(css_lines), unsafe_allow_html=True)
 st.markdown(
     """
     <div class="header-box">
-        <div class="y2k-pill">Y2K POP EDITION</div>
+        <div class="y2k-pill">Hello Dita!</div>
         <div class="header-title">Special Mail For You</div>
-        <div class="header-sub">Tap langsung amplop kuningnya buat ngintip kejutan wisuda</div>
     </div>
     """,
     unsafe_allow_html=True,
@@ -364,38 +269,11 @@ if not st.session_state.amplop_terbuka:
                 <div class="envelope-seal">*</div>
             </div>
         </a>
-        <div class="envelope-hint">Tap amplop buat buka surat</div>
+        <div class="envelope-hint">Tap this out!</div>
         """,
         unsafe_allow_html=True,
     )
 else:
-    foto_items_html = []
-
-    for idx, (path_foto, caption_foto) in enumerate(DAFTAR_FOTO):
-        delay_foto = round(delay_awal_foto + (idx * JEDA_ANTAR_FOTO), 2)
-        foto_uri = encode_foto_base64(path_foto)
-
-        if foto_uri:
-            isi_media = f'<img src="{foto_uri}" alt="{caption_foto}" />'
-        else:
-            isi_media = (
-                f'<div class="photo-pop-placeholder">'
-                f"Letakkan file <strong>{path_foto}</strong> di folder yang sama dengan <code>app.py</code>"
-                f"</div>"
-            )
-
-        foto_items_html.append(
-            f"""
-            <div class="photo-pop-card" style="--photo-delay: {delay_foto}s;">
-                <div class="photo-pop-media">
-                    {isi_media}
-                </div>
-                <div class="photo-pop-caption">{caption_foto}</div>
-            </div>
-            """
-        )
-
-    foto_list_html = "\n".join(foto_items_html)
     paragraf_html = "\n".join(
         f'<p class="letter-body">{paragraf}</p>' for paragraf in PARAGRAF_SURAT
     )
@@ -403,19 +281,14 @@ else:
     st.markdown(
         f"""
         <div class="letter-container">
-            <div class="photo-pop-list">
-                {foto_list_html}
+            <div class="letter-title">{JUDUL_SURAT}</div>
+            {paragraf_html}
+            <div class="letter-footer">
+                <div>{PENUTUP_SURAT}</div>
+                <strong>{NAMA_PENGIRIM}</strong>
             </div>
-            <div class="letter-stage">
-                <div class="letter-title">{JUDUL_SURAT}</div>
-                {paragraf_html}
-                <div class="letter-footer">
-                    <div>{PENUTUP_SURAT}</div>
-                    <strong>{NAMA_PENGIRIM}</strong>
-                </div>
-                <div class="replay-wrap">
-                    <a class="replay-link" href="?buka=0" target="_self">Putar ulang dari amplop</a>
-                </div>
+            <div class="replay-wrap">
+                <a class="replay-link" href="?buka=0" target="_self">Putar ulang dari amplop</a>
             </div>
         </div>
         """,
