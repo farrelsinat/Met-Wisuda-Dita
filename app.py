@@ -1,13 +1,13 @@
 import streamlit as st
 
 st.set_page_config(
-    page_title="Selamat Wisuda!",
+    page_title="Congraduation Guys!",
     page_icon="🎓",
     layout="centered",
 )
 
 NAMA_PACAR = "Dita"
-JUDUL_SURAT = f"Happy Graduation, {NAMA_PACAR}! 🎓"
+JUDUL_SURAT = f"Met wisuda, {NAMA_PACAR}! 🎓"
 
 PARAGRAF_SURAT = [
     "Congraduation lah ya kalo kata orang-orang. Setelah menempuh huru-hara, suka, duka, duka, dan duka (hehe..), akhirnya dia LULUS GUYS!",
@@ -249,8 +249,8 @@ st.markdown("\n".join(css_lines), unsafe_allow_html=True)
 st.markdown(
     """
     <div class="header-box">
-        <div class="y2k-pill">Hello Dita!</div>
-        <div class="header-title">Special Mail For You</div>
+        <div class="y2k-pill">Dari HR PT Larping Sejahtera Abadi Nan Jaya</div>
+        <div class="header-title">Offering Letter (Tapi Boong)</div>
     </div>
     """,
     unsafe_allow_html=True,
