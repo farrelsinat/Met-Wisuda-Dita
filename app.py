@@ -18,6 +18,7 @@ PARAGRAF_SURAT = [
 
 PENUTUP_SURAT = "Sending lots of cheers & info loker!"
 NAMA_PENGIRIM = "From Your Beloved Adek & Nam Joo-hyuk"
+NOTE = "Well, this is the least I can do untuk membuat lo semangat hidup.. mungkin. Hehe.. Aamin."
 
 if "amplop_terbuka" not in st.session_state:
     st.session_state.amplop_terbuka = False
@@ -240,6 +241,14 @@ css_lines = [
     "  color: #7A581B;",
     "  text-align: center;",
     "}",
+    ".letter-note {",
+    "  margin-top: 1.5rem;",
+    "  padding-top: 1rem;",
+    "  border-top: 2px dotted #FACC15;",
+    "  font-size: 0.66rem;",
+    "  color: #7A581B;",
+    "  text-align: center;",
+    "}",
     ".replay-wrap {",
     "  margin-top: 1.4rem;",
     "  text-align: center;",
@@ -326,6 +335,9 @@ else:
             </div>
             <div class="replay-wrap">
                 <a class="replay-link" href="?buka=0" target="_self">Close</a>
+            </div>
+            <div class="letter-note">
+                <div>{NOTE}</div>
             </div>
         </div>
         """,
